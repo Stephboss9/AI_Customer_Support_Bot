@@ -1,95 +1,76 @@
+'use client'
+
 import Image from "next/image";
-import styles from "./page.module.css";
+import { useState } from "react";
+import { Box, Stack, Typography } from "@mui/material"
+import { Content } from "next/font/google";
 
 export default function Home() {
+  const [chatMessages, setChatMessages] = useState([{
+    role: "assistant",
+    content: "Hi, I am  a career advisor chat bot and am here to provide advice on various career-related topics."
+  }, {
+    role: "user",
+    content: "hello there"
+  }]);
+  const [userMessage, setUserMessage] = useState("");
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Box
+      width="100vw"
+      height="100vh"
+      display="flex"
+      justifyContent="center"
+      alignItems="center"
+    >
+      <Stack
+        height="700px"
+        width="600px"
+        direction="column"
+        border="1px solid #ccc"
+        borderRadius="8px"
+        boxShadow="0px 2px 4px rgba(0, 0, 0, 0.1)"
+        overflowY="auto"
+        spacing={2}
+      >
+        <Box
+          height="100px"
+          width="100%"
+          borderRadius="8px 8px 0 0"
+          borderBottomRadius
+          backgroundColor="#64B5F6"
+          color="#fff"
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          marginBottom="5px">
+          <Typography
+            variant="h6"
           >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+            AI Career Advisor Bot
+          </Typography>
+        </Box>
+        {chatMessages.map((message, index) => (
+          <Box
+            key={index}
+            display="flex"
+            alignItems="center"
+            justifyContent={message.role === "assistant" ? "flex-start" : "flex-end"}
+            marginBottom="16px"
+          >
+            <Box
+              maxWidth="70%"
+              padding="16px"
+              borderRadius="16px"
+              marginRight={message.role === "user" ? "5px" : "0px"}
+              marginLeft={message.role === "assistant" ? "5px" : "0px"}
+              bgcolor={message.role === "assistant" ? "#fff" : "#90CAF9"}
+              boxShadow={message.role = "assistant" ? '2px 2px 4px rgba(0, 0, 0, 0.1)' : '0 -2px 4px rgba(0, 0, 0, 0.1)'}>
+              <Typography variant="body1">{message.content}</Typography>
+            </Box>
+          </Box>
+        ))}
+      </Stack>
+    </Box>
   );
 }
