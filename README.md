@@ -1,6 +1,6 @@
 ### Welcome!
 
-I started this project as part of the Headstarter AI fellowship to learn Next.JS and how to use the OpenAI api. I want to create an AI bot that can help review resumes and provide feedback on various career-related topics.
+I started this project as part of the Headstarter AI fellowship to learn Next.JS, Material UI and how to use the OpenAI api. I want to create an AI bot that can help review resumes and provide feedback on various career-related topics.
 
 
 Here is the current state of the application!
